@@ -1,31 +1,30 @@
 package com.saveapis.mcnamesapi.api.services;
 
+import com.google.common.util.concurrent.ListenableFuture;
 import com.saveapis.mcnamesapi.api.models.translations.ReadonlyTranslationInfo;
-import com.saveapis.mcnamesapi.api.models.translations.ReadonlyTranslationResult;
 import com.saveapis.mcnamesapi.api.utils.ReadonlyCollection;
+import com.saveapis.mcnamesapi.base.BaseObjectRestResult;
+import com.saveapis.mcnamesapi.base.BaseRestResult;
+import com.saveapis.mcnamesapi.models.translations.TranslationInfo;
+import com.saveapis.mcnamesapi.types.RestPaths;
+import com.saveapis.mcnamesapi.utils.AsyncUtils;
+import com.saveapis.mcnamesapi.utils.WebUtils;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * Service to access the translations provided by the REST-API
- *
- * @author SaveFeelix
- * @version 1.0
- */
-public final class TranslationService {
-    /**
-     * Default Constructor
-     *
-     * @throws IllegalAccessException You are not allowed to use the constructor. All methods are static!
-     */
-    public TranslationService() throws IllegalAccessException {
-        throw new IllegalAccessException();
-    }
+import java.util.ArrayList;
+import java.util.List;
 
-    public static @NotNull ReadonlyCollection<ReadonlyTranslationInfo> getAllTranslations() {
-        return null;
-    }
+public class TranslationService {
+    public static @NotNull ListenableFuture<ReadonlyCollection<ReadonlyTranslationInfo>> All() {
+        BaseObjectRestResult restResult = WebUtils.get(RestPaths.TRANSLATION, BaseObjectRestResult.class);
+        if (restResult == null || restResult.getError())
+            return AsyncUtils.getAsync(param -> new ReadonlyCollection<>());
 
-    public static @NotNull ReadonlyTranslationResult byIdentifier(String identifier) {
-        return null;
+        BaseRestResult<List<TranslationInfo>> infoRestResult = new BaseRestResult<>(false, "", (List<TranslationInfo>) restResult.getResult());
+
+        List<ReadonlyTranslationInfo> readonlyInfos = new ArrayList<>();
+        for (TranslationInfo info : infoRestResult.getResult())
+            readonlyInfos.add(new ReadonlyTranslationInfo(info.getIdentifier(), info.getIdentifier()));
+        return AsyncUtils.getAsync(params -> new ReadonlyCollection<>(params[0]), readonlyInfos);
     }
 }

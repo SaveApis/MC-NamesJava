@@ -1,4 +1,7 @@
 package com.saveapis.mcnamesapi.api.models.translations;
 
-public record ReadonlyTranslationInfo(Integer version, String displayName, String identifier) {
+import org.jetbrains.annotations.NotNull;
+
+public record ReadonlyTranslationInfo(@NotNull String displayName, @NotNull String identifier) {
+    
 }

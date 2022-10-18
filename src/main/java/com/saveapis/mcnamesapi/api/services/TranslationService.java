@@ -24,7 +24,7 @@ public class TranslationService {
 
         List<ReadonlyTranslationInfo> readonlyInfos = new ArrayList<>();
         for (LinkedTreeMap<String, String> info : infoRestResult.getResult())
-            readonlyInfos.add(new ReadonlyTranslationInfo(info.get("display"), info.get("identifier")));
+            readonlyInfos.add(new ReadonlyTranslationInfo(info.get("displayName"), info.get("identifier")));
         return AsyncUtils.getAsync(params -> new ReadonlyCollection<>(params[0]), readonlyInfos);
     }
 }

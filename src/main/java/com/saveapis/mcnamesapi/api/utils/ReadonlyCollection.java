@@ -25,4 +25,8 @@ public class ReadonlyCollection<T> {
             return null;
         }
     }
+
+    public @NotNull List<T> toList() {
+        return collection;
+    }
 }

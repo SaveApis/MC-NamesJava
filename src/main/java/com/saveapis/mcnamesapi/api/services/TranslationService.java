@@ -1,21 +1,8 @@
 package com.saveapis.mcnamesapi.api.services;
 
-import com.google.common.util.concurrent.ListenableFuture;
-import com.google.gson.internal.LinkedTreeMap;
-import com.saveapis.mcnamesapi.api.models.translations.ReadonlyTranslationInfo;
-import com.saveapis.mcnamesapi.api.utils.ReadonlyCollection;
-import com.saveapis.mcnamesapi.base.BaseObjectRestResult;
-import com.saveapis.mcnamesapi.base.BaseRestResult;
-import com.saveapis.mcnamesapi.types.RestPaths;
-import com.saveapis.mcnamesapi.utils.AsyncUtils;
-import com.saveapis.mcnamesapi.utils.WebUtils;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class TranslationService {
-    public static @NotNull ListenableFuture<ReadonlyCollection<ReadonlyTranslationInfo>> All() {
+    /*
+    public static @NotNull ListenableFuture<ReadonlyCollection<ReadonlyTranslationInfo>> all() {
         BaseObjectRestResult restResult = WebUtils.get(RestPaths.TRANSLATION, BaseObjectRestResult.class);
         if (restResult == null || restResult.getError())
             return AsyncUtils.getAsync(param -> new ReadonlyCollection<>());
@@ -27,4 +14,5 @@ public class TranslationService {
             readonlyInfos.add(new ReadonlyTranslationInfo(info.get("displayName"), info.get("identifier")));
         return AsyncUtils.getAsync(params -> new ReadonlyCollection<>(params[0]), readonlyInfos);
     }
+    */
 }

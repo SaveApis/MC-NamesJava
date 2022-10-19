@@ -1,4 +1,4 @@
-package com.saveapis.mcnamesapi.base;
+package com.saveapis.mcnamesapi.models.base;
 
 public class BaseObjectRestResult {
     private Boolean error;

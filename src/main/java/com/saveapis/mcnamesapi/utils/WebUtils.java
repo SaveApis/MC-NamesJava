@@ -1,6 +1,6 @@
 package com.saveapis.mcnamesapi.utils;
 
-import com.saveapis.mcnamesapi.types.RestPaths;
+import com.saveapis.mcnamesapi.api.types.RestPaths;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.http.HttpEntity;
@@ -21,7 +21,7 @@ public class WebUtils {
     }
 
     public static <T> @Nullable T get(@NotNull RestPaths type, @Nullable String path, @NotNull Class<T> clazz) {
-        String url = getBaseUrl() + "/" + type.getPath() + "/" + path;
+        String url = getBaseUrl() + "/" + type.getPath() + (path != null ? "/" + path : "");
         return get(url, clazz);
     }
 
@@ -30,15 +30,15 @@ public class WebUtils {
     }
 
     public static <T> @Nullable T post(@NotNull String url, @NotNull Class<T> clazz) {
-        // TODO Fix 405 Error
-        ResponseEntity<T> response = client.postForEntity(url, HttpEntity.EMPTY, clazz);
+        HttpEntity<String> entity = new HttpEntity<>("");
+        ResponseEntity<T> response = client.postForEntity(url, entity, clazz);
         if (response.getStatusCode() != HttpStatus.OK)
             return null;
         return response.getBody();
     }
 
     public static <T> @Nullable T post(@NotNull RestPaths type, @Nullable String path, @NotNull Class<T> clazz) {
-        String url = getBaseUrl() + "/" + type.getPath() + "/" + path;
+        String url = getBaseUrl() + "/" + type.getPath() + (path != null ? "/" + path : "");
         return post(url, clazz);
     }
 

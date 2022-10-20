@@ -1,4 +1,4 @@
-package com.saveapis.mcnamesapi.types;
+package com.saveapis.mcnamesapi.api.types;
 
 public enum Languages {
     DEUTSCH("de"),

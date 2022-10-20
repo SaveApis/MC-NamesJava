@@ -5,13 +5,13 @@ import com.saveapis.mcnamesapi.api.models.base.ApiResult;
 import com.saveapis.mcnamesapi.api.models.translations.ReadonlyTranslation;
 import com.saveapis.mcnamesapi.api.models.translations.ReadonlyTranslationContent;
 import com.saveapis.mcnamesapi.api.models.translations.ReadonlyTranslationInfo;
+import com.saveapis.mcnamesapi.api.types.Languages;
+import com.saveapis.mcnamesapi.api.types.RestPaths;
 import com.saveapis.mcnamesapi.api.utils.ReadonlyCollection;
 import com.saveapis.mcnamesapi.models.base.BaseObjectRestResult;
 import com.saveapis.mcnamesapi.models.translations.Translation;
 import com.saveapis.mcnamesapi.models.translations.TranslationContent;
 import com.saveapis.mcnamesapi.models.translations.TranslationInfo;
-import com.saveapis.mcnamesapi.types.Languages;
-import com.saveapis.mcnamesapi.types.RestPaths;
 import com.saveapis.mcnamesapi.utils.AsyncUtils;
 import com.saveapis.mcnamesapi.utils.JsonUtils;
 import com.saveapis.mcnamesapi.utils.WebUtils;
@@ -30,9 +30,8 @@ public final class TranslationService {
         TranslationInfo[] infos = JsonUtils.toObject(JsonUtils.toJson(restResult.getResult()), TranslationInfo[].class);
         List<ReadonlyTranslationInfo> readonlyInfos = new ArrayList<>();
 
-        for (TranslationInfo info : infos) {
+        for (TranslationInfo info : infos)
             readonlyInfos.add(new ReadonlyTranslationInfo(info.getDisplayName(), info.getIdentifier()));
-        }
         return AsyncUtils.getAsync(param -> new ApiResult<>(false, restResult.getMessage(), new ReadonlyCollection<>(readonlyInfos)));
     }
 

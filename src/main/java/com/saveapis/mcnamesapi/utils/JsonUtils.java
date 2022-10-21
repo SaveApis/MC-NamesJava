@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class JsonUtils {
-    private static final Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("dd.MM.yyyy HH:mm:ss").create();
+    private static final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").setPrettyPrinting().create();
 
     public static <T> String toJson(T valueToJson) {
         return gson.toJson(valueToJson);

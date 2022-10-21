@@ -1,7 +1,7 @@
 package com.saveapis.mcnamesapi.api.types;
 
 public enum Languages {
-    DEUTSCH("de"),
+    GERMAN("de"),
     ENGLISH("en")
     ;
 

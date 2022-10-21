@@ -15,7 +15,7 @@ public class TestTranslation {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         WebUtils.setBaseUrl("http://localhost:5002");
-        ApiResult<ReadonlyCollection<ReadonlyTranslationInfo>> infos = TranslationService.all().get();
+        ApiResult<ReadonlyCollection<ReadonlyTranslationInfo>> infos = TranslationService.infos().get();
         TestTranslation.infos = infos.result().toList();
         printTranslationInfos();
         printTranslations();

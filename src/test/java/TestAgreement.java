@@ -12,7 +12,7 @@ public class TestAgreement {
         WebUtils.setBaseUrl("http://localhost:5002");
 
          ApiResult<ReadonlyAgreement> readonlyAgreementApiResult =
-                AgreementService.hasAgreement(UUID.fromString("9f1666a3-8769-4641-a5e5-87d523fda9ab"), Languages.DEUTSCH).get();
+                AgreementService.hasAgreement(UUID.fromString("9f1666a3-8769-4641-a5e5-87d523fda9ab"), Languages.GERMAN).get();
 
         System.out.println("================== PRE ==================");
         System.out.println("Error:\t\t\t\t" + readonlyAgreementApiResult.error());
@@ -22,7 +22,7 @@ public class TestAgreement {
         System.out.println();
         System.out.println();
 
-        readonlyAgreementApiResult = AgreementService.toggleAgreement(UUID.fromString("9f1666a3-8769-4641-a5e5-87d523fda9ab"), Languages.DEUTSCH).get();
+        readonlyAgreementApiResult = AgreementService.toggleAgreement(UUID.fromString("9f1666a3-8769-4641-a5e5-87d523fda9ab"), Languages.GERMAN).get();
 
         System.out.println("================== POST ==================");
         System.out.println("Error:\t\t\t\t" + readonlyAgreementApiResult.error());
